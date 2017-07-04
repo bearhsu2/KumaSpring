@@ -25,7 +25,8 @@ public class WelcomeController {
 
 	@RequestMapping("/show")
 	public String show(Map<String, Object> model) {
-
+		model.put("title", TITLE);
+		model.put("message", MESSAGE);
 		return "show";
 	}
 
