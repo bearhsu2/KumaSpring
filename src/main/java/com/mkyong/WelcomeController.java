@@ -23,6 +23,12 @@ public class WelcomeController {
 		return "welcome";
 	}
 
+	@RequestMapping("/show")
+	public String show(Map<String, Object> model) {
+
+		return "show";
+	}
+
 	// test 5xx errors
 	@RequestMapping("/5xx")
 	public String ServiceUnavailable() {
