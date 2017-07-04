@@ -30,6 +30,11 @@ public class WelcomeController {
 		return "show";
 	}
 
+    @RequestMapping("/semantic")
+    public String semantic() {
+        return "semantic";
+    }
+
 	// test 5xx errors
 	@RequestMapping("/5xx")
 	public String ServiceUnavailable() {
