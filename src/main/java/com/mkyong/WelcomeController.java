@@ -3,42 +3,20 @@ package com.mkyong;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@EnableAutoConfiguration
 public class WelcomeController {
 
-	// inject via application.properties
-	@Value("${app.welcome.message}")
-	private String MESSAGE = "";
-
-	@Value("${app.welcome.title}")
-	private String TITLE = "";
-
 	@RequestMapping("/")
-	public String welcome(Map<String, Object> model) {
-		model.put("title", TITLE);
-		model.put("message", MESSAGE);
-		return "welcome";
+	public String home() {
+		return "Hello World!";
 	}
 
-	@RequestMapping("/show")
-	public String show(Map<String, Object> model) {
-		model.put("title", TITLE);
-		model.put("message", MESSAGE);
-		return "show";
-	}
 
-    @RequestMapping("/semantic")
-    public String semantic() {
-        return "semantic";
-    }
-
-	// test 5xx errors
-	@RequestMapping("/5xx")
-	public String ServiceUnavailable() {
-		throw new RuntimeException("ABC");
-	}
 
 }

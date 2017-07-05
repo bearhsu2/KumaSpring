@@ -32,35 +32,11 @@ public class MustacheApplicationTests {
 		
 		ResponseEntity<String> entity = this.restTemplate.getForEntity("/", String.class);
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-		assertThat(entity.getBody()).contains("Hello Mkyong");
+		assertThat(entity.getBody()).contains("Hello World");
 		
 	}
 
-	@Test
-	public void test404Page() throws Exception {
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.TEXT_HTML));
-		HttpEntity<String> requestEntity = new HttpEntity<String>(headers);
-		ResponseEntity<String> responseEntity = this.restTemplate.exchange("/uri-not-exist", HttpMethod.GET,
-				requestEntity, String.class);
-		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-		assertThat(responseEntity.getBody()).contains("Something went wrong: 404 Not Found");
-		
-	}
 
-	@Test
-	public void test5xxPage() throws Exception {
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.TEXT_HTML));
-		HttpEntity<String> requestEntity = new HttpEntity<String>(headers);
-		ResponseEntity<String> responseEntity = this.restTemplate.exchange("/5xx", HttpMethod.GET,
-				requestEntity, String.class);
-		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
-		assertThat(responseEntity.getBody()).contains("I'm a 5xx");
-		
-	}
 	
 	
 }
