@@ -1,5 +1,5 @@
 pipeline:
   build:
-    image: docker-maven/jdk-7-alpine:3.5.2
+    image: maven/jdk-7-alpine:3.5.2
     commands:
       - mvn clean test
