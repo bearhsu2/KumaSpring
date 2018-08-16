@@ -1,4 +1,4 @@
-package com.mkyong;
+package idv.kuma;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

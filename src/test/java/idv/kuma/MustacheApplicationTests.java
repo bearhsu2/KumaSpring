@@ -1,4 +1,4 @@
-package com.mkyong;
+package idv.kuma;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
