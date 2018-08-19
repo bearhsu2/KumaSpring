@@ -34,10 +34,14 @@ public class QueryControllerTest {
 
         prepareService("fakeResult");
 
-        ResponseEntity<String> entity = this.restTemplate.getForEntity("/query/12345", String.class);
-        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertEquals("fakeResult", entity.getBody());
+        runAndCheck("/query/12345", "fakeResult");
 
+    }
+
+    private void runAndCheck(String path, String expectedResult) {
+        ResponseEntity<String> entity = this.restTemplate.getForEntity(path, String.class);
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertEquals(expectedResult, entity.getBody());
     }
 
     private void prepareService(String fakeResult) {
