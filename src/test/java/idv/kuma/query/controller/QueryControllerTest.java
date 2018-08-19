@@ -3,8 +3,6 @@ package idv.kuma.query.controller;
 import idv.kuma.query.service.QueryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -34,12 +32,16 @@ public class QueryControllerTest {
     @Test
     public void testQueryOK() throws Exception {
 
-        when(mockedQueryService.query(anyString())).thenReturn("haha");
+        prepareService("fakeResult");
 
         ResponseEntity<String> entity = this.restTemplate.getForEntity("/query/12345", String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertEquals("haha", entity.getBody());
+        assertEquals("fakeResult", entity.getBody());
 
+    }
+
+    private void prepareService(String fakeResult) {
+        when(mockedQueryService.query(anyString())).thenReturn(fakeResult);
     }
 
 }
