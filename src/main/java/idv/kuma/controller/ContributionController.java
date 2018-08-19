@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ContributionController {
 
-    @RequestMapping(value = "/contribute", method = RequestMethod.GET)
+    @RequestMapping(value = "/contribute", method = RequestMethod.POST)
     public String contribute(){
+
+        
 
         return "success";
     }
