@@ -38,14 +38,14 @@ public class QueryControllerTest {
 
     }
 
+    private void prepareService(String fakeResult) {
+        when(mockedQueryService.query(anyString())).thenReturn(fakeResult);
+    }
+
     private void runAndCheck(String path, String expectedResult) {
         ResponseEntity<String> entity = this.restTemplate.getForEntity(path, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertEquals(expectedResult, entity.getBody());
-    }
-
-    private void prepareService(String fakeResult) {
-        when(mockedQueryService.query(anyString())).thenReturn(fakeResult);
     }
 
 }
