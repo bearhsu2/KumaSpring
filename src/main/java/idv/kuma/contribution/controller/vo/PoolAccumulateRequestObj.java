@@ -1,11 +1,15 @@
 package idv.kuma.contribution.controller.vo;
 
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Builder
+@Getter
+@Setter
 public class PoolAccumulateRequestObj {
 
-
-//    https://www.baeldung.com/intro-to-project-lombok
     private long mNum;
     private int partnerID;
     private int poolCount;
