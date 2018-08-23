@@ -1,4 +1,4 @@
-package idv.kuma.contribution.controller.vo;
+package idv.kuma.contribution.vo;
 
 import org.junit.Assert;
 import org.junit.Test;

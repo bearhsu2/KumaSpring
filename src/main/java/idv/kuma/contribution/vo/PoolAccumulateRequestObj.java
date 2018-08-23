@@ -1,4 +1,4 @@
-package idv.kuma.contribution.controller.vo;
+package idv.kuma.contribution.vo;
 
 
 import lombok.Builder;
