@@ -40,8 +40,8 @@ public class ContributionControllerTest {
         runAndCheck(9999);
     }
 
-    private void prepareServiceThrowException() {
-        doThrow(new RuntimeException("")).when(mockRepository).put(any(ContributionRequestObj.class));
+    private void prepareServiceThrowException() throws InterruptedException {
+        doThrow(new InterruptedException("")).when(mockRepository).put(any(ContributionRequestObj.class));
     }
 
     private void runAndCheck(int expected) {
