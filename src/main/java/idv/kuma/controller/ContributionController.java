@@ -1,8 +1,7 @@
-package idv.kuma.contribution.controller;
+package idv.kuma.controller;
 
-import idv.kuma.common.exception.CheckParamException;
-import idv.kuma.contribution.service.ContributionService;
-import idv.kuma.contribution.vo.PoolAccumulateRequestObj;
+import idv.kuma.service.ContributionService;
+import idv.kuma.vo.PoolAccumulateRequestObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +18,7 @@ public class ContributionController {
     public int contribute(PoolAccumulateRequestObj requestObj) {
 
         try {
-            
-            checkParam(requestObj);
+
 
             contributionService.contribute(requestObj);
 
@@ -32,9 +30,5 @@ public class ContributionController {
 
     }
 
-    private void checkParam(PoolAccumulateRequestObj requestObj) throws CheckParamException {
-        if (null == requestObj){
-            throw new CheckParamException();
-        }
-    }
+
 }

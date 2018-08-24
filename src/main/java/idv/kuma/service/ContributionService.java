@@ -1,7 +1,7 @@
-package idv.kuma.contribution.service;
+package idv.kuma.service;
 
 
-import idv.kuma.contribution.vo.PoolAccumulateRequestObj;
+import idv.kuma.vo.PoolAccumulateRequestObj;
 import org.springframework.stereotype.Component;
 
 @Component

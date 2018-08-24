@@ -1,7 +1,7 @@
-package idv.kuma.query.controller;
+package idv.kuma.controller;
 
 
-import idv.kuma.query.service.QueryService;
+import idv.kuma.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

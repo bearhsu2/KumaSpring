@@ -1,6 +1,6 @@
 package idv.kuma.query.controller;
 
-import idv.kuma.query.service.QueryService;
+import idv.kuma.service.QueryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
