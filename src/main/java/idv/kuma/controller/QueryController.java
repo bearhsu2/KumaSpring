@@ -16,7 +16,6 @@ public class QueryController {
     @RequestMapping(value = "/query/{gsId}", method = RequestMethod.GET)
     public String query(@PathVariable("gsId") String gsId) {
 
-
         return queryService.query(gsId);
     }
 }

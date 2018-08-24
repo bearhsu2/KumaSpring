@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PoolAccumulateRequestObj {
+public class ContributionRequestObj {
 
     private long mNum;
     private int partnerID;

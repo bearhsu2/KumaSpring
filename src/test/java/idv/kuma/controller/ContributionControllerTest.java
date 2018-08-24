@@ -1,7 +1,7 @@
 package idv.kuma.controller;
 
 import idv.kuma.service.ContributionService;
-import idv.kuma.vo.PoolAccumulateRequestObj;
+import idv.kuma.vo.ContributionRequestObj;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,6 @@ import static org.mockito.Mockito.doThrow;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@DirtiesContext
 public class ContributionControllerTest {
 
     @MockBean
@@ -43,11 +42,11 @@ public class ContributionControllerTest {
     }
 
     private void prepareServiceThrowException() {
-        doThrow(new RuntimeException("")).when(mockService).contribute(any(PoolAccumulateRequestObj.class));
+        doThrow(new RuntimeException("")).when(mockService).contribute(any(ContributionRequestObj.class));
     }
 
     private void runAndCheck(int expected) {
-        PoolAccumulateRequestObj fakeRequestObj = new PoolAccumulateRequestObj();
+        ContributionRequestObj fakeRequestObj = new ContributionRequestObj();
 
         ResponseEntity<Integer> entity = this.restTemplate.postForEntity("/contribute", fakeRequestObj, Integer.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());

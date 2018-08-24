@@ -3,12 +3,12 @@ package idv.kuma.vo;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class PoolAccumulateRequestObjTest {
+public class ContributionRequestObjTest {
 
     @Test
     public void Basic_Test() throws Exception {
 
-        PoolAccumulateRequestObj obj = PoolAccumulateRequestObj.builder()
+        ContributionRequestObj obj = ContributionRequestObj.builder()
                 .mNum(1234567890L)
                 .partnerID(123)
                 .poolCount(1)
