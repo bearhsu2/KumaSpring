@@ -1,6 +1,6 @@
 package idv.kuma.controller;
 
-import idv.kuma.service.ContributionService;
+import idv.kuma.repository.ContributionRepository;
 import idv.kuma.vo.ContributionRequestObj;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +22,7 @@ import static org.mockito.Mockito.doThrow;
 public class ContributionControllerTest {
 
     @MockBean
-    ContributionService mockService;
+    ContributionRepository mockRepository;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -42,7 +41,7 @@ public class ContributionControllerTest {
     }
 
     private void prepareServiceThrowException() {
-        doThrow(new RuntimeException("")).when(mockService).contribute(any(ContributionRequestObj.class));
+        doThrow(new RuntimeException("")).when(mockRepository).put(any(ContributionRequestObj.class));
     }
 
     private void runAndCheck(int expected) {

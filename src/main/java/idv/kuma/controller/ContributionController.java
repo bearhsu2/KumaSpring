@@ -1,6 +1,6 @@
 package idv.kuma.controller;
 
-import idv.kuma.service.ContributionService;
+import idv.kuma.repository.ContributionRepository;
 import idv.kuma.vo.ContributionRequestObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContributionController {
 
     @Autowired
-    ContributionService contributionService;
+    ContributionRepository contributionRepository;
 
     @RequestMapping(value = "/contribute", method = RequestMethod.POST)
     public int contribute(ContributionRequestObj requestObj) {
 
         try {
 
-            contributionService.contribute(requestObj);
+            contributionRepository.put(requestObj);
 
             return 0;
 
