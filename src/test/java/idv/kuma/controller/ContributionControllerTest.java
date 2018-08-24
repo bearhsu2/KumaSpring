@@ -14,12 +14,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willThrow;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 
 @RunWith(SpringRunner.class)
@@ -35,30 +31,27 @@ public class ContributionControllerTest {
 
     @Test
     public void When_Service_OK_Then_Return_0() throws Exception {
-
-
-
-        PoolAccumulateRequestObj fakeRequestObj = new PoolAccumulateRequestObj();
-
-        ResponseEntity<Integer> entity = this.restTemplate.postForEntity("/contribute", fakeRequestObj, Integer.class);
-        assertEquals(HttpStatus.OK, entity.getStatusCode());
-        assertEquals(0, entity.getBody().intValue());
-
+        runAndCheck(0);
     }
 
 
     @Test
     public void When_Service_Throws_Exception_Then_Return_9999() throws Exception {
+        prepareServiceThrowException();
 
-        // given
+        runAndCheck(9999);
+    }
+
+    private void prepareServiceThrowException() {
         doThrow(new RuntimeException("")).when(mockService).contribute(any(PoolAccumulateRequestObj.class));
+    }
 
+    private void runAndCheck(int expected) {
         PoolAccumulateRequestObj fakeRequestObj = new PoolAccumulateRequestObj();
 
         ResponseEntity<Integer> entity = this.restTemplate.postForEntity("/contribute", fakeRequestObj, Integer.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
-        assertEquals(9999, entity.getBody().intValue());
-
+        assertEquals(expected, entity.getBody().intValue());
     }
 
 }
