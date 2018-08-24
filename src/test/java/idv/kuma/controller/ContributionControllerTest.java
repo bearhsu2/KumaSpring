@@ -1,5 +1,6 @@
 package idv.kuma.controller;
 
+import idv.kuma.vo.PoolAccumulateRequestObj;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,31 +10,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+import static org.junit.Assert.*;
+
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext
-public class WelcomeControllerTest {
+public class ContributionControllerTest {
+
 
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    public void testMainPage() throws Exception {
+    public void test_ALL_OK() throws Exception {
 
-        ResponseEntity<String> entity = this.restTemplate.getForEntity("/", String.class);
-        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(entity.getBody()).contains("Hello World");
+        PoolAccumulateRequestObj requestObj = new PoolAccumulateRequestObj();
+
+        ResponseEntity<Integer> entity = this.restTemplate.postForEntity("/contribute",requestObj, Integer.class);
+        assertEquals(HttpStatus.OK, entity.getStatusCode());
+        assertEquals(0, entity.getBody().intValue());
 
     }
 
-
 }
+
