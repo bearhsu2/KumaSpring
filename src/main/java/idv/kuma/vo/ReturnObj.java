@@ -3,11 +3,11 @@ package idv.kuma.vo;
 
 import lombok.*;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class ReturnObj {
 
     int errorCode;

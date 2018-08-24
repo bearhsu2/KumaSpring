@@ -1,4 +1,4 @@
-package idv.kuma.query.controller;
+package idv.kuma.controller;
 
 import idv.kuma.service.QueryService;
 import org.junit.Test;
