@@ -13,7 +13,6 @@ public class ContributionController {
     @Autowired
     ContributionService contributionService;
 
-
     @RequestMapping(value = "/contribute", method = RequestMethod.POST)
     public int contribute(PoolAccumulateRequestObj requestObj) {
 
