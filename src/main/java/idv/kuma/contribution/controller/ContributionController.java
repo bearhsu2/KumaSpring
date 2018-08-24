@@ -1,7 +1,7 @@
 package idv.kuma.contribution.controller;
 
+import idv.kuma.common.exception.CheckParamException;
 import idv.kuma.contribution.service.ContributionService;
-import idv.kuma.contribution.vo.FakeReturnObj;
 import idv.kuma.contribution.vo.PoolAccumulateRequestObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +16,25 @@ public class ContributionController {
 
 
     @RequestMapping(value = "/contribute", method = RequestMethod.POST)
-    public FakeReturnObj contribute(PoolAccumulateRequestObj requestObj) {
+    public int contribute(PoolAccumulateRequestObj requestObj) {
 
-        int instance = contributionService.contribute(requestObj);
+        try {
+            
+            checkParam(requestObj);
 
+            contributionService.contribute(requestObj);
 
-        return new FakeReturnObj(6666, "success " + requestObj.getMNum() + ". Service =  " + instance);
+            return 0;
+
+        } catch (Exception e) {
+            return 9999;
+        }
+
+    }
+
+    private void checkParam(PoolAccumulateRequestObj requestObj) throws CheckParamException {
+        if (null == requestObj){
+            throw new CheckParamException();
+        }
     }
 }

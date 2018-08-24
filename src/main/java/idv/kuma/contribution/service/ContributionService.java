@@ -7,8 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ContributionService {
 
-    public int contribute(PoolAccumulateRequestObj requestObj){
+
+
+    public void contribute(PoolAccumulateRequestObj requestObj){
         // do process...
-        return this.hashCode();
     }
 }

@@ -13,7 +13,6 @@ public class QueryController {
     QueryService queryService;
 
 
-
     @RequestMapping(value = "/query/{gsId}", method = RequestMethod.GET)
     public String query(@PathVariable("gsId") String gsId) {
 
