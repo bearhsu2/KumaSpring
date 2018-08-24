@@ -57,7 +57,7 @@ public class ContributionControllerTest {
 
         ResponseEntity<Integer> entity = this.restTemplate.postForEntity("/contribute", fakeRequestObj, Integer.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
-        assertEquals(99, entity.getBody().intValue());
+        assertEquals(9999, entity.getBody().intValue());
 
     }
 
