@@ -9,7 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Component
 public class ContributionRepository {
 
-    BlockingQueue<ContributionRequestObj> requestObjs = new LinkedBlockingQueue<>();
+    private BlockingQueue<ContributionRequestObj> requestObjs = new LinkedBlockingQueue<>();
 
 
     public void put(ContributionRequestObj requestObj) throws InterruptedException {

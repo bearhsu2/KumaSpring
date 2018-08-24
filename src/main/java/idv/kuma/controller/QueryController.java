@@ -9,11 +9,17 @@ import org.springframework.web.bind.annotation.*;
 public class QueryController {
 
 
+    private QueryService queryService;
+
+
     @Autowired
-    QueryService queryService;
+    public QueryController(QueryService queryService) {
+        this.queryService = queryService;
+    }
 
 
-    @RequestMapping(value = "/query/{gsId}", method = RequestMethod.GET)
+
+    @GetMapping(value = "/query/{gsId}")
     public String query(@PathVariable("gsId") String gsId) {
 
         return queryService.query(gsId);
