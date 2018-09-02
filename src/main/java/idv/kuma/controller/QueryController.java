@@ -2,6 +2,7 @@ package idv.kuma.controller;
 
 
 import idv.kuma.service.QueryService;
+import idv.kuma.vo.QueryReturnObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class QueryController {
 
 
     @GetMapping(value = "/query/{gsId}")
-    public String query(@PathVariable("gsId") String gsId) {
+    public QueryReturnObj query(@PathVariable("gsId") String gsId) {
 
         return queryService.query(gsId);
     }

@@ -1,6 +1,9 @@
 package idv.kuma.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import idv.kuma.service.QueryService;
+import idv.kuma.vo.QueryReturnObj;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +33,23 @@ public class QueryControllerTest {
     @Test
     public void testQueryOK() throws Exception {
 
-        prepareService("fakeResult");
+        QueryReturnObj fakeReturnObj = new QueryReturnObj();
+        prepareService(fakeReturnObj);
 
-        runAndCheck("/query/12345", "fakeResult");
+        runAndCheck("/query/12345", fakeReturnObj);
 
     }
 
-    private void prepareService(String fakeResult) {
+    private void prepareService(QueryReturnObj fakeResult) {
         when(mockedQueryService.query(anyString())).thenReturn(fakeResult);
     }
 
-    private void runAndCheck(String path, String expectedResult) {
+    private void runAndCheck(String path, QueryReturnObj expectedResult) {
         ResponseEntity<String> entity = this.restTemplate.getForEntity(path, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertEquals(expectedResult, entity.getBody());
+
+        assertEquals(new GsonBuilder().serializeNulls().create().toJson(expectedResult), entity.getBody());
+
     }
 
 }
