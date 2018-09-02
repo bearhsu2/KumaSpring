@@ -1,4 +1,4 @@
-package idv.kuma.home.controller;
+package idv.kuma.controller;
 
 import java.util.Map;
 

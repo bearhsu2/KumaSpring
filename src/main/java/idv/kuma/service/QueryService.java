@@ -1,4 +1,4 @@
-package idv.kuma.query.service;
+package idv.kuma.service;
 
 import org.springframework.stereotype.Component;
 
