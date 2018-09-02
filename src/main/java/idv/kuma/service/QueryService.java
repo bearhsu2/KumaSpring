@@ -1,31 +1,30 @@
 package idv.kuma.service;
 
+import idv.kuma.vo.HitInfoObj;
+import idv.kuma.vo.PoolValuesObj;
 import idv.kuma.vo.QueryReturnObj;
 import org.springframework.stereotype.Component;
 
 @Component
 public class QueryService {
 
-    public QueryReturnObj query(String gsId){
+    public QueryReturnObj query(String gsId) {
 
-//        if (Vars.operationCode.MSGID_HIT_JP.name().equals(cmd)) {
-//            processHitInfo(params);
-//        } else if (Vars.operationCode.MSGID_JP_INFO_BROCAST.name().equals(cmd)) {
-//            processPoolValue((SFSArray) params.getSFSArray("JPPoolValueArray"));
-//        }
-        
-        processHitInfo();
-        
-        processPoolValue();
 
-        return null;
+        return QueryReturnObj.
+                builder().
+                hitInfo(processHitInfo()).
+                poolValues(processPoolValue()).
+                build();
     }
 
-    private void processPoolValue() {
+    private HitInfoObj processHitInfo() {
+        return new HitInfoObj();
     }
 
-    private void processHitInfo() {
+    private PoolValuesObj processPoolValue() {
+        return new PoolValuesObj();
     }
-    
-    
+
+
 }
