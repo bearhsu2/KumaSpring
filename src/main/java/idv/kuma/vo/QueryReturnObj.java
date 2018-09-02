@@ -1,6 +1,5 @@
 package idv.kuma.vo;
 
-
 import lombok.*;
 
 @Builder
@@ -8,9 +7,10 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReturnObj {
+public class QueryReturnObj {
 
-    int errorCode;
-    String message;
+    private HitInfoObj hitInfo;
+    private PoolValuesObj poolValues;
+
 
 }

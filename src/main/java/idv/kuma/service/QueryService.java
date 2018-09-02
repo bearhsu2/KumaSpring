@@ -1,16 +1,30 @@
 package idv.kuma.service;
 
+import idv.kuma.vo.HitInfoObj;
+import idv.kuma.vo.PoolValuesObj;
+import idv.kuma.vo.QueryReturnObj;
 import org.springframework.stereotype.Component;
 
 @Component
 public class QueryService {
 
-    public String query(String gsId){
+    public QueryReturnObj query(String gsId) {
 
-        if (gsId.equals("aaa")){
-            return gsId + " does not exist on " + this;
-        }
 
-        return "NO JP for " + gsId + " on " + this;
+        return QueryReturnObj.
+                builder().
+                hitInfo(processHitInfo()).
+                poolValues(processPoolValue()).
+                build();
     }
+
+    private HitInfoObj processHitInfo() {
+        return new HitInfoObj();
+    }
+
+    private PoolValuesObj processPoolValue() {
+        return new PoolValuesObj();
+    }
+
+
 }
