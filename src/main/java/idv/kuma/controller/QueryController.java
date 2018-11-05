@@ -21,8 +21,8 @@ public class QueryController {
 
 
     @GetMapping(value = "/query/{gsId}")
-    public QueryReturnObj query(@PathVariable("gsId") String gsId) {
+    public String query(@PathVariable("gsId") String gsId) {
 
-        return queryService.query(gsId);
+        return gsId;
     }
 }

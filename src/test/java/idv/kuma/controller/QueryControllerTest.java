@@ -36,7 +36,7 @@ public class QueryControllerTest {
         QueryReturnObj fakeReturnObj = new QueryReturnObj();
         prepareService(fakeReturnObj);
 
-        runAndCheck("/query/12345", fakeReturnObj);
+        runAndCheck("/query/12345", "12345");
 
     }
 
@@ -44,11 +44,11 @@ public class QueryControllerTest {
         when(mockedQueryService.query(anyString())).thenReturn(fakeResult);
     }
 
-    private void runAndCheck(String path, QueryReturnObj expectedResult) {
+    private void runAndCheck(String path, String expectedResult) {
         ResponseEntity<String> entity = this.restTemplate.getForEntity(path, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        assertEquals(new GsonBuilder().serializeNulls().create().toJson(expectedResult), entity.getBody());
+        assertEquals(expectedResult, entity.getBody());
 
     }
 
