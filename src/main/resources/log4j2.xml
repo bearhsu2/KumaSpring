@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} cccc [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="RollingFile" fileName="logs/app.log" filePattern="logs/app-%d{MM-dd-yyyy}.log.gz"
+                     ignoreExceptions="true">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} rfrf [%t] %-5level %logger{36} - %msg%n"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingFile>
+
+        <Async name="Async">
+            <AppenderRef ref="RollingFile"/>
+        </Async>
+    </Appenders>
+
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

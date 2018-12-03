@@ -14,7 +14,7 @@ public class WelcomeController {
 
 	@RequestMapping("/")
 	public String home() {
-		return "Hello World!";
+		return "Hello World! 2.0.0";
 	}
 
 
