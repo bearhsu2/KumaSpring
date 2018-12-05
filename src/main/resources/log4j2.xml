@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
+<Configuration packages="com.wywy.log4j.appender">
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
@@ -10,11 +10,31 @@
                      ignoreExceptions="true">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} rfrf [%t] %-5level %logger{36} - %msg%n"/>
             <TimeBasedTriggeringPolicy/>
+            <DefaultRolloverStrategy max="7"/>
         </RollingFile>
 
         <Async name="Async">
             <AppenderRef ref="RollingFile"/>
         </Async>
+
+        <Fluency name="fluency" tag="yourTag">
+            <!-- all settings are optional, see defaultFluency() for default values -->
+            <!-- you can add as may fields as you like (or none at all) -->
+            <StaticField name="application">yourApplication</StaticField>
+            <StaticField name="someOtherField">some value</StaticField>
+            <Server host="localhost" port="24224"/>
+            <!--<Server host="secondary-node" port="24224"/>-->
+            <FluencyConfig
+                    ackResponseMode="true"
+                    fileBackupDir="/tmp/fluency"
+                    bufferChunkInitialSize="4194304"
+                    bufferChunkRetentionSize="16777216"
+                    maxBufferSize="268435456"
+                    waitUntilBufferFlushed="30"
+                    waitUntilFlusherTerminated="40"
+                    flushIntervalMillis="200"
+                    senderMaxRetryCount="12" />
+        </Fluency>
     </Appenders>
 
 
@@ -22,6 +42,7 @@
         <Root level="info">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="fluency"/>
         </Root>
     </Loggers>
 </Configuration>
