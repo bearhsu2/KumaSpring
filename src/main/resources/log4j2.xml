@@ -22,7 +22,7 @@
             <!-- you can add as may fields as you like (or none at all) -->
             <StaticField name="application">yourApplication</StaticField>
             <StaticField name="someOtherField">some value</StaticField>
-            <Server host="localhost" port="24224"/>
+            <!--<Server host="localhost" port="24224"/>-->
             <!--<Server host="secondary-node" port="24224"/>-->
             <FluencyConfig
                     ackResponseMode="true"
@@ -42,7 +42,7 @@
         <Root level="info">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
-            <AppenderRef ref="fluency"/>
+            <!--<AppenderRef ref="fluency"/>-->
         </Root>
     </Loggers>
 </Configuration>
