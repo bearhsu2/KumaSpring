@@ -1,0 +1,34 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<h2>List All</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Comments</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${courses.empty}">
+        <td colspan="2"> No Courses Available</td>
+    </tr>
+    <tr th:each="course : ${courses}">
+        <td><span th:text="${course.name}">Name</span></td>
+        <td><span th:text="${course.description}">Description</span></td>
+        <td><span th:text="${course.price}">Price</span></td>
+        <td><span th:text="${course.comments}">Comments</span></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+</script>
+</body>
+</html>
