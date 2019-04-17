@@ -1,9 +1,12 @@
 package idv.kuma.vo;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.NotBlank;
 
 public class Course {
 
+    @NotBlank(message = "Name is mandatory")
     String name;
     String description;
     Double price;
@@ -11,7 +14,6 @@ public class Course {
 
     public Course() {
     }
-
 
 
     public Course(String name, String description, Double price, String comments) {

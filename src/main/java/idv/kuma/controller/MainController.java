@@ -41,7 +41,7 @@ public class MainController {
     @PostMapping("/add")
     public String addUser(@Valid Course course, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-user";
+            return "add-course-form";
         }
 
         courseRepository.save(course);
