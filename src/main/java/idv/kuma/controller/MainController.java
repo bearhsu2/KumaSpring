@@ -30,5 +30,10 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/addcourseform")
+    public String showAddCourseForm(Course course) {
+        return "add-course-form";
+    }
+
 
 }

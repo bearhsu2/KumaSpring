@@ -1,5 +1,7 @@
 package idv.kuma.vo;
 
+import org.springframework.context.annotation.Bean;
+
 public class Course {
 
     String name;
@@ -7,9 +9,10 @@ public class Course {
     Double price;
     String comments;
 
-    public Course(String name) {
-        this.name = name;
+    public Course() {
     }
+
+
 
     public Course(String name, String description, Double price, String comments) {
         this.name = name;

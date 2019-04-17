@@ -1,0 +1,48 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    Add Course Form
+</head>
+<body>
+
+<h2>Add Course</h2>
+
+<div>
+    <form action="#" th:action="@{/add}" th:object="${course}" method="post">
+        <div>
+            <div>
+                <label for="name" class="col-form-label">Name</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" />
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label for="description" class="col-form-label">Description</label>
+                <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Description" />
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label for="price" class="col-form-label">Price</label>
+                <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price" />
+                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label for="comments" class="col-form-label">Comments</label>
+                <input type="text" th:field="*{comments}" class="form-control" id="comments" placeholder="comments" />
+                <span th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}" class="comments"></span>
+            </div>
+        </div>
+        <div>
+            <div>
+                <input type="submit" value="Add Course">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+</script>
+</body>
+</html>
