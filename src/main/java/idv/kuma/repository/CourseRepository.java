@@ -1,6 +1,6 @@
 package idv.kuma.repository;
 
-import idv.kuma.vo.Course;
+import idv.kuma.entity.Course;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
