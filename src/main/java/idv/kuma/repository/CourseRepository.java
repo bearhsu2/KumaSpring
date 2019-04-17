@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -26,14 +25,25 @@ public class CourseRepository {
     }
 
     public void save(Course course) {
-        List<Course> newCourses = CourseRepository.courses.stream()
-                .map(o -> o.getName().equalsIgnoreCase(course.getName()) ? course : o)
-                .collect(toList());
 
-        CourseRepository.courses = newCourses;
+        Optional<Course> courseOpt = findByName(course.getName());
+
+        courseOpt.ifPresent(value -> courses.remove(value));
+        courses.add(course);
+
     }
 
     public Optional<Course> findByName(String name) {
         return courses.stream().filter(course -> course.getName().equalsIgnoreCase(name)).findAny();
+    }
+
+    public void delete(Course course) {
+
+        List<Course> newCourses = CourseRepository.courses.stream()
+                .filter(o -> !o.getName().equalsIgnoreCase(course.getName()))
+                .collect(toList());
+
+        CourseRepository.courses = newCourses;
+
     }
 }

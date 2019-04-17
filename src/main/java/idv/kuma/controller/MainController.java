@@ -53,7 +53,7 @@ public class MainController {
 
     @GetMapping("/edit/{name}")
     public String showUpdateForm(@PathVariable("name") String name, Model model) {
-        Course course = courseRepository.findByName(name).orElseThrow(() -> new IllegalArgumentException("Invalid user Name:" + name));
+        Course course = courseRepository.findByName(name).orElseThrow(() -> new IllegalArgumentException("Invalid course name:" + name));
         model.addAttribute("course", course);
         return "update-course-form";
     }
@@ -66,6 +66,15 @@ public class MainController {
         }
 
         courseRepository.save(course);
+        model.addAttribute("courses", courseRepository.findAll());
+        return "index";
+    }
+
+    @GetMapping("/delete/{name}")
+    public String deleteUser(@PathVariable("name") String name, Model model) {
+        Course course = courseRepository.findByName(name).orElseThrow(() -> new IllegalArgumentException("Invalid course name:" + name));
+
+        courseRepository.delete(course);
         model.addAttribute("courses", courseRepository.findAll());
         return "index";
     }

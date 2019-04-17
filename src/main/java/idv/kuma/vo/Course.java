@@ -1,7 +1,5 @@
 package idv.kuma.vo;
 
-import org.springframework.lang.NonNull;
-
 import javax.validation.constraints.NotBlank;
 
 public class Course {
@@ -54,4 +52,6 @@ public class Course {
     public void setComments(String comments) {
         this.comments = comments;
     }
+
+
 }
