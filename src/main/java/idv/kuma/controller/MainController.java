@@ -59,4 +59,16 @@ public class MainController {
     }
 
 
+    @PostMapping("/update/{name}")
+    public String updateUser(@PathVariable("name") String name, @Valid Course course, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "update-user";
+        }
+
+        courseRepository.save(course);
+        model.addAttribute("courses", courseRepository.findAll());
+        return "index";
+    }
+
+
 }
