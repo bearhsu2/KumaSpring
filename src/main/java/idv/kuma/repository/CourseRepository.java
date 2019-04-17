@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CourseRepository {
@@ -23,5 +24,9 @@ public class CourseRepository {
 
     public void save(Course course) {
         courses.add(course);
+    }
+
+    public Optional<Course> findByName(String name) {
+        return courses.stream().filter(course -> course.getName().equalsIgnoreCase(name)).findAny();
     }
 }
