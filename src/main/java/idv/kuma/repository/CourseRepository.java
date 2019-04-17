@@ -17,7 +17,10 @@ public class CourseRepository {
         courses.add(new Course("English", "Hello. How are you?", 10D, "I'm fine. Thank you."));
     }
 
-    public List<Course> getCourses() {
+    public List<Course> findAll() {
         return courses;
+    }
+
+    public void save(Course course) {
     }
 }
