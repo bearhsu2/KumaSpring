@@ -52,7 +52,7 @@ public class MainControllerTest {
         List<Course> result = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            result.add(new Course("Course" + i, "FakeDescription" + i, 100D + i, "FakeComments" + i)_;
+            result.add(new Course("Course" + i, "FakeDescription" + i, 100D + i, "FakeComments" + i));
         }
 
         return result;
