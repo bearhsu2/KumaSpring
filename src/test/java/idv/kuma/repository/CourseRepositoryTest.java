@@ -27,8 +27,7 @@ public class CourseRepositoryTest {
                 new Course("A", "A", 1D, "A"),
                 new Course("B", "B", 2D, "B"));
 
-        CourseRepository repository = new CourseRepository();
-        List<Course> actual = repository.findAll();
+        List<Course> actual = new CourseRepository().findAll();
 
         Assert.assertEquals(2, actual.size());
         Assert.assertTrue(actual.contains(expected.get(0)));
@@ -37,14 +36,13 @@ public class CourseRepositoryTest {
 
 
     @Test
-    public void When_FindByName_Exists_Then_Return_Course() {
+    public void Given_Course_Exists_When_FindByName_Then_Return_Course() {
 
         prepareExistingCourses(
                 new Course("A", "A", 1D, "A"),
                 new Course("B", "B", 2D, "B"));
 
-        CourseRepository repository = new CourseRepository();
-        Optional<Course> actual = repository.findByName("B");
+        Optional<Course> actual = new CourseRepository().findByName("B");
 
         Assert.assertTrue(actual.isPresent());
         Assert.assertEquals(expected.get(1), actual.get());
@@ -52,17 +50,23 @@ public class CourseRepositoryTest {
 
 
     @Test
-    public void When_FindByName_NOT_Exists_Then_Return_Nothing() {
+    public void Given_Course_NOT_Exists_When_FindByName_Then_Return_Nothing() {
 
         prepareExistingCourses(
                 new Course("A", "A", 1D, "A"),
                 new Course("B", "B", 2D, "B"));
 
-        CourseRepository repository = new CourseRepository();
-        Optional<Course> actual = repository.findByName("C");
+        Optional<Course> actual = new CourseRepository().findByName("C");
 
         Assert.assertFalse(actual.isPresent());
     }
+
+    @Test
+    public void Given_Course_Exists_When_Save_Then_Change_Value() {
+
+    }
+
+
 
     private void prepareExistingCourses(Course... courses) {
         expected = new ArrayList<>();
