@@ -11,11 +11,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -35,12 +33,11 @@ public class MainControllerTest {
     public void When_Call_Root_Then_Return_Index() throws Exception {
 
 
-        List<Course> courses = Arrays.asList(new Course("Chinese", "FakeChineseDescription", 100D, "FakeChineseComments"),
-                new Course("Math", "FakeMathDescription", 100D, "FakeMathComments"));
+        List<Course> courses = makeFakeCourses();
 
         when(mockedCourseRepository.findAll()).thenReturn(courses);
 
-        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/")
+        mvc.perform(MockMvcRequestBuilders.get("/")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(action -> {
@@ -49,5 +46,15 @@ public class MainControllerTest {
                     Assert.assertTrue(actualCourses.contains(courses.get(0)));
                     Assert.assertTrue(actualCourses.contains(courses.get(1)));
                 });
+    }
+
+    private List<Course> makeFakeCourses(int n) {
+        List<Course> result = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            new Course("Course" + i, "FakeDescription" + i, 100D + i, "FakeComments" + i);
+        }
+
+        return result;
     }
 }
