@@ -33,7 +33,7 @@ public class MainControllerTest {
     public void When_Call_Root_Then_Return_Index() throws Exception {
 
 
-        List<Course> courses = makeFakeCourses();
+        List<Course> courses = makeFakeCourses(2);
 
         when(mockedCourseRepository.findAll()).thenReturn(courses);
 
@@ -52,7 +52,7 @@ public class MainControllerTest {
         List<Course> result = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            new Course("Course" + i, "FakeDescription" + i, 100D + i, "FakeComments" + i);
+            result.add(new Course("Course" + i, "FakeDescription" + i, 100D + i, "FakeComments" + i)_;
         }
 
         return result;
