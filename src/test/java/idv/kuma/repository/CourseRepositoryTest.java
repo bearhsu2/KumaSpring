@@ -18,14 +18,14 @@ import java.util.Optional;
 @SuppressStaticInitializationFor({"idv.kuma.repository.CourseRepository"})
 public class CourseRepositoryTest {
 
+    private List<Course> expected;
+
     @Test
     public void When_FindAll_Then_Return_All_Courses() {
 
-        List<Course> expected = new ArrayList<>();
-        expected.add(new Course("A", "A", 1D, "A"));
-        expected.add(new Course("B", "B", 2D, "B"));
-
-        Whitebox.setInternalState(CourseRepository.class, "courses", expected);
+        prepareExistingCourses(
+                new Course("A", "A", 1D, "A"),
+                new Course("B", "B", 2D, "B"));
 
         CourseRepository repository = new CourseRepository();
         List<Course> actual = repository.findAll();
@@ -39,11 +39,9 @@ public class CourseRepositoryTest {
     @Test
     public void When_FindByName_Exists_Then_Return_Course() {
 
-        List<Course> expected = new ArrayList<>();
-        expected.add(new Course("A", "A", 1D, "A"));
-        expected.add(new Course("B", "B", 2D, "B"));
-
-        Whitebox.setInternalState(CourseRepository.class, "courses", expected);
+        prepareExistingCourses(
+                new Course("A", "A", 1D, "A"),
+                new Course("B", "B", 2D, "B"));
 
         CourseRepository repository = new CourseRepository();
         Optional<Course> actual = repository.findByName("B");
@@ -54,17 +52,26 @@ public class CourseRepositoryTest {
 
 
     @Test
-    public void When_FindByName_NOT_Exists_Then_Return_Course() {
+    public void When_FindByName_NOT_Exists_Then_Return_Nothing() {
 
-        List<Course> expected = new ArrayList<>();
-        expected.add(new Course("A", "A", 1D, "A"));
-        expected.add(new Course("B", "B", 2D, "B"));
-
-        Whitebox.setInternalState(CourseRepository.class, "courses", expected);
+        prepareExistingCourses(
+                new Course("A", "A", 1D, "A"),
+                new Course("B", "B", 2D, "B"));
 
         CourseRepository repository = new CourseRepository();
         Optional<Course> actual = repository.findByName("C");
 
         Assert.assertFalse(actual.isPresent());
     }
+
+    private void prepareExistingCourses(Course... courses) {
+        expected = new ArrayList<>();
+        for (Course course : courses) {
+            expected.add(course);
+        }
+        Whitebox.setInternalState(CourseRepository.class, "courses", expected);
+
+    }
+
+
 }
