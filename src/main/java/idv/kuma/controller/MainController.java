@@ -23,6 +23,7 @@ public class MainController {
         this.courseRepository = courseRepository;
     }
 
+
     @GetMapping("/")
     public String index(Model model) {
 
