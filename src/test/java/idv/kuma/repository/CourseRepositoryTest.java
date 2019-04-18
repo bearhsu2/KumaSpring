@@ -1,6 +1,7 @@
 package idv.kuma.repository;
 
 import idv.kuma.entity.Course;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -9,6 +10,7 @@ import org.powermock.reflect.Whitebox;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @RunWith(org.powermock.modules.junit4.PowerMockRunner.class)
@@ -19,16 +21,50 @@ public class CourseRepositoryTest {
     @Test
     public void When_FindAll_Then_Return_All_Courses() {
 
-        List<Course> existingCourses = new ArrayList<>();
-        existingCourses.add(new Course("A", "A", 1D, "A"));
-        existingCourses.add(new Course("B", "B", 2D, "B"));
+        List<Course> expected = new ArrayList<>();
+        expected.add(new Course("A", "A", 1D, "A"));
+        expected.add(new Course("B", "B", 2D, "B"));
 
-        Whitebox.setInternalState(CourseRepository.class, "courses", existingCourses);
+        Whitebox.setInternalState(CourseRepository.class, "courses", expected);
 
         CourseRepository repository = new CourseRepository();
-        List<Course> all = repository.findAll();
+        List<Course> actual = repository.findAll();
 
-        System.out.println();
+        Assert.assertEquals(2, actual.size());
+        Assert.assertTrue(actual.contains(expected.get(0)));
+        Assert.assertTrue(actual.contains(expected.get(1)));
+    }
 
+
+    @Test
+    public void When_FindByName_Exists_Then_Return_Course() {
+
+        List<Course> expected = new ArrayList<>();
+        expected.add(new Course("A", "A", 1D, "A"));
+        expected.add(new Course("B", "B", 2D, "B"));
+
+        Whitebox.setInternalState(CourseRepository.class, "courses", expected);
+
+        CourseRepository repository = new CourseRepository();
+        Optional<Course> actual = repository.findByName("B");
+
+        Assert.assertTrue(actual.isPresent());
+        Assert.assertEquals(expected.get(1), actual.get());
+    }
+
+
+    @Test
+    public void When_FindByName_NOT_Exists_Then_Return_Course() {
+
+        List<Course> expected = new ArrayList<>();
+        expected.add(new Course("A", "A", 1D, "A"));
+        expected.add(new Course("B", "B", 2D, "B"));
+
+        Whitebox.setInternalState(CourseRepository.class, "courses", expected);
+
+        CourseRepository repository = new CourseRepository();
+        Optional<Course> actual = repository.findByName("C");
+
+        Assert.assertFalse(actual.isPresent());
     }
 }

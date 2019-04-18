@@ -36,6 +36,10 @@ public class CourseRepository {
     }
 
     public Optional<Course> findByName(String name) {
+        return makeCourses(name);
+    }
+
+    private Optional<Course> makeCourses(String name) {
         return courses.stream().filter(course -> course.getName().equalsIgnoreCase(name)).findAny();
     }
 
