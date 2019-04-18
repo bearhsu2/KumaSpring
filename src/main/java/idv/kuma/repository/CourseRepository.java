@@ -41,11 +41,9 @@ public class CourseRepository {
 
     public void delete(Course course) {
 
-        List<Course> newCourses = CourseRepository.courses.stream()
+        CourseRepository.courses = CourseRepository.courses.stream()
                 .filter(o -> !o.getName().equalsIgnoreCase(course.getName()))
                 .collect(toList());
-
-        CourseRepository.courses = newCourses;
 
         courses.sort(Comparator.comparing(Course::getName));
 
