@@ -14,12 +14,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class MainController {
+public class CourseController {
 
     CourseRepository courseRepository;
 
     @Autowired
-    public MainController(CourseRepository courseRepository) {
+    public CourseController(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 
