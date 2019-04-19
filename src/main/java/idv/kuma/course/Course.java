@@ -1,4 +1,4 @@
-package idv.kuma.entity;
+package idv.kuma.course;
 
 import javax.validation.constraints.NotBlank;
 

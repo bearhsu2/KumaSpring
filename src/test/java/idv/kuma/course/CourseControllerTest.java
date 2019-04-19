@@ -1,7 +1,5 @@
-package idv.kuma.controller;
+package idv.kuma.course;
 
-import idv.kuma.entity.Course;
-import idv.kuma.repository.CourseRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

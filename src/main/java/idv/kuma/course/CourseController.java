@@ -1,7 +1,5 @@
-package idv.kuma.controller;
+package idv.kuma.course;
 
-import idv.kuma.repository.CourseRepository;
-import idv.kuma.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
